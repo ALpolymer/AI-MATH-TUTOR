@@ -15,18 +15,13 @@ __pycache__/
 *.so
 .pytest_cache/
 
-# =========================
-# Jupyter Notebooks
-# =========================
-.ipynb_checkpoints/
-rag/notebooks/.ipynb_checkpoints/
+
 
 # =========================
 # Βάσεις Δεδομένων & Αρχεία AI (Vector DBs)
 # =========================
 # Αν χρησιμοποιήσεις ChromaDB, FAISS ή SQLite τοπικά, δεν θέλουμε να ανεβαίνουν στο Git
-chroma_db/
-rag/chroma_db/
+data/chroma_db/
 *.sqlite3
 *.db
 
