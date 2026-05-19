@@ -1,18 +1,28 @@
 concepts:
 
-- περιορισμος ριζας
-- περιορισμος παρονομαστη
-- περιορισμος λογαριθμου
-- σχετικη θεση γραφικης παραστασης
+- pedio_orismou
+- pedio_orismou_synthesis
+- isotita_synartisewn
+- synthesi_synartisewn
+- sxetiki_thesi_grafikis_parastasis
+- periorismos_paronomasti
+- periorismos_rizas
+- periorismos_logarithmou
+- praxeis_synartisewn
 
 ---
 
 core_techniques:
 
-- εξισωση δευτερου βαθμου
-- ανισωση πρωτου βαθμου
-- ανισωση δευτερου βαθμου
-- λογαριθμικη ανισωση
-- ανισωση δευτερου βαθμου
-- ρητη ανισωση
-- εκθετικη ανισωση
+- exiswsi_deyterou_vathmou
+- aniswsi_prwtou_vathmou
+- aniswsi_deyterou_vathmou
+- ekthetiki_aniswsi
+- klasmatiki_aniswsi
+- idiotites_apolitis_timis
+- idiotites_rizwn
+- aplopoiisi_ritis_parastasis
+- riti_parastasi
+- trigwnometriki_tautotita
+- trigonometriki_exiswsi
+- analysi_sinthetis_synartisis
