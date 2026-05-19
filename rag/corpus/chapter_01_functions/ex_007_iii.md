@@ -45,10 +45,7 @@ $$x = \kappa\pi + \dfrac{\pi}{2}, \quad \kappa \in \mathbb{Z}$$
 $$D_g = \mathbb{R} - \left\{ x \mid x = \kappa\pi + \dfrac{\pi}{2}, \kappa \in \mathbb{Z} \right\}.$$
 
 Για να ορίζεται η σύνθεση $(g \circ f)(x) = g(f(x))$, πρέπει να συναληθεύουν οι περιορισμοί:
-$$x \in D_f \quad \text{και} \quad f(x) \in D_g$$
-
-Με αντικατάσταση των $D_f$ και $f(x)$, έχουμε:
-$$x \in \mathbb{R} \quad \text{και} \quad \dfrac{\pi}{4} \neq \kappa\pi + \dfrac{\pi}{2}, \quad \kappa \in \mathbb{Z}$$
+$$(x \in D_f \quad \text{και} \quad f(x) \in D_g) \Leftrightarrow (x \in \mathbb{R} \quad \text{και} \quad \dfrac{\pi}{4} \neq \kappa\pi + \dfrac{\pi}{2}, \quad \kappa \in \mathbb{Z})$$
 
 Η συνθήκη $\dfrac{\pi}{4} \neq \kappa\pi + \dfrac{\pi}{2}$ αληθεύει για κάθε $\kappa \in \mathbb{Z}$ (καθώς αν υπήρχε ακέραιος $\kappa$ ώστε $\kappa\pi + \dfrac{\pi}{2} = \dfrac{\pi}{4} \Leftrightarrow \kappa\pi = -\dfrac{\pi}{4} \Leftrightarrow \kappa = -\dfrac{1}{4}$, το οποίο είναι άτοπο αφού $\kappa \in \mathbb{Z}$).
 

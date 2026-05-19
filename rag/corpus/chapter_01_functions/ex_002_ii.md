@@ -31,4 +31,4 @@ ii) $f(x) = \dfrac{1+x}{1-x}$
 ## Λύση
 
 Ομοίως έχουμε:
-$$\dfrac{1+x}{1-x} > 0 \Leftrightarrow (1+x)(1-x) > 0 \Leftrightarrow -1 < x < 1.$$
+$$\dfrac{1+x}{1-x} > 0 \Leftrightarrow (1+x)(1-x) > 0 \Leftrightarrow 1-x^2 > 0 \Leftrightarrow x^2 < 1\Leftrightarrow \lvert x  \rvert < 1 \Leftrightarrow -1 < x < 1.$$

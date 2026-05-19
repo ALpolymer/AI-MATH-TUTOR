@@ -5,7 +5,7 @@ topic: synartiseis
 concepts:
   - synthesi_synartisewn
 core_techniques:
-  - analysi_sinthetis_synartisis
+  - analisi_sinthetis_synartisis
 difficulty: medium
 source_type: textbook
 book_page: 28

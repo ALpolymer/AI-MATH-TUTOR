@@ -9,6 +9,7 @@ concepts:
   - periorismos_rizas
 core_techniques:
   - aplopoiisi_ritis_parastasis
+  - syzigis_parastasi
   - idiotites_rizwn
 
 difficulty: medium
@@ -38,6 +39,10 @@ iii) $f(x) = \dfrac{x-1}{\sqrt{x}-1}$ και $g(x) = \sqrt{x} + 1$
 Η συνάρτηση $f$ έχει πεδίο ορισμού το $A = [0, 1) \cup (1, +\infty)$. Για κάθε $x \in A$, έχουμε:
 $$f(x) = \dfrac{x-1}{\sqrt{x}-1} = \dfrac{(x-1)(\sqrt{x}+1)}{(\sqrt{x}-1)(\sqrt{x}+1)} = \dfrac{(x-1)(\sqrt{x}+1)}{x-1} = \sqrt{x}+1.$$
 
-Η συνάρτηση $g$ έχει πεδίο ορισμού το $B = [0, +\infty)$. Επομένως οι συναρτήσεις $f$ και $g$ έχουν διαφορετικά πεδία ορισμού, οπότε δεν είναι ίσες. Είναι όμως $f(x) = g(x)$ για κάθε $x \in [0, 1) \cup (1, +\infty)$.
+Η συνάρτηση $g$ έχει πεδίο ορισμού το $B = [0, +\infty)$.
+
+Επομένως οι συναρτήσεις $f$ και $g$ έχουν διαφορετικά πεδία ορισμού, οπότε δεν είναι ίσες. Είναι όμως :
+
+$f(x) = g(x)$ για κάθε $x \in [0, 1) \cup (1, +\infty)$.
 
 Άρα οι $f, g$ είναι ίσες στο $[0, 1) \cup (1, +\infty)$.

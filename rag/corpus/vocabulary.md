@@ -25,4 +25,5 @@ core_techniques:
 - riti_parastasi
 - trigwnometriki_tautotita
 - trigonometriki_exiswsi
-- analysi_sinthetis_synartisis
+- analisi_sinthetis_synartisis
+- syzigis_parastasi
