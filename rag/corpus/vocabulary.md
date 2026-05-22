@@ -9,6 +9,7 @@ concepts:
 - periorismos_rizas
 - periorismos_logarithmou
 - praxeis_synartisewn
+- aposynthesi_synartisewn
 
 ---
 
@@ -25,5 +26,8 @@ core_techniques:
 - riti_parastasi
 - trigwnometriki_tautotita
 - trigonometriki_exiswsi
+- trigonometriki_synartisi
 - analisi_sinthetis_synartisis
 - syzigis_parastasi
+- voithitiki_metavliti
+- isotita_polionimwn
