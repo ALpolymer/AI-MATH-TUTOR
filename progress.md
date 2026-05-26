@@ -2,37 +2,21 @@
 
 ---
 
-## 🎯 Τρέχουσα Κατάσταση
+### Τρέχουσα κατάσταση
 
-**Φάση:** 1
-**Τρέχον βήμα:** Βήμα 0 — Project scaffolding (σε εξέλιξη)
-**Status:** Σε εξέλιξη
-**Τελευταία ενημέρωση:** 2026-05-17
+- **Φάση:** 1
+- **Τρέχον βήμα:** Βήμα 2 — Basic Indexing (σε εξέλιξη)
+- **Status:** `config.py` ολοκληρώθηκε → Επόμενο: `loader.py`
 
 ---
 
-## ✅ Ολοκληρωμένα Βήματα
+### Νέα ολοκληρωμένα βήματα
 
-| #   | Βήμα                  | Notebook ref | Ημερομηνία | Σχόλια                     |
-| --- | --------------------- | ------------ | ---------- | -------------------------- |
-| 0   | Project scaffolding   | —            | 2026-05-22 | Δομή έτοιμη, empty modules |
-| 1   | Corpus preparation    | —            | 2026-05-22 | minimal corpus ετοιμο      |
-| 2   | Basic indexing        | 3.1          |            |                            |
-| 3   | Vanilla RAG chain     | 3.2          |            |                            |
-| 4   | Evaluation foundation | 2.5, 3.8     |            |                            |
-| 5   | Gradio demo UI        | —            |            |                            |
-| 6   | PCTF + CoT            | 2.3, 2.4     |            |                            |
-| 7   | Structured output     | 2.6          |            |                            |
-| 8   | Query transformations | 3.3          |            |                            |
-| 9   | Routing               | 3.4          |            |                            |
-| 10  | Advanced chunking     | 3.9          |            |                            |
-| 11  | Advanced indexing     | 3.5          |            |                            |
-| 12  | Hybrid + rerank       | 3.6          |            |                            |
-| 13  | Self-correcting RAG   | 3.7          |            |                            |
-| 14  | GraphRAG (optional)   | 3.10         |            |                            |
-| 15  | Safety                | 2.8          |            |                            |
-| 16  | Production basics     | 3.8          |            |                            |
-| 17  | FastAPI wrapper       | 1.6, 1.7     |            |                            |
+| #   | Βήμα                           | Notebook ref                     | Ημερομηνία | Σχόλια                                                                       |
+| --- | ------------------------------ | -------------------------------- | ---------- | ---------------------------------------------------------------------------- |
+| 0   | Project Scaffolding            | —                                | 2026-05-22 | Δομή φακέλων, **init**.py, empty modules                                     |
+| 1   | Corpus Preparation             | —                                | 2026-05-22 | 28 λυμένες ασκήσεις, chapter_01_functions, vocabulary.md                     |
+| 2a  | `config.py` — Singleton Config | `01_indexing_fundamentals.ipynb` | 2026-05-26 | `@lru_cache`, `@dataclass`, `__post_init__` validation, `repr=False` για key |
 
 ---
 
@@ -81,12 +65,25 @@ exam_theme: null
 external_source_name: null
 ```
 
-- **[2026-05-17]** Project structure = monorepo, δύο submodules: `rag/` (AI logic, βήματα 1-16) και `backend/` (FastAPI με tiangolo full-stack-fastapi-template structure, βήμα 17). Σήμερα φτιάχνουμε μόνο το `rag/`.
-- **[2026-05-17]** Frontmatter parsing = `python-frontmatter` βιβλιοθήκη. Loader στο `rag/ingestion/loader.py`.
+- **2026-05-17** Project structure = monorepo, δύο submodules: `rag/` (AI logic, βήματα 1-16) και `backend/` (FastAPI με tiangolo full-stack-fastapi-template structure, βήμα 17). Σήμερα φτιάχνουμε μόνο το `rag/`.
+- **2026-05-17** Frontmatter parsing = `python-frontmatter` βιβλιοθήκη. Loader στο `rag/ingestion/loader.py`.
 
-- **[2026-05-17]** Vocabulary file (`rag/corpus/vocabulary.md`) επεκτείνεται μαζί με το corpus. Κάθε νέα άσκηση που εισάγει νέο concept/technique υποχρεώνει ενημέρωση του vocabulary.
+- **2026-05-17** Vocabulary file (`rag/corpus/vocabulary.md`) επεκτείνεται μαζί με το corpus. Κάθε νέα άσκηση που εισάγει νέο concept/technique υποχρεώνει ενημέρωση του vocabulary.
+
+- **2026-05-22** Το top-level package ονομάζεται `rag/` (όχι `math_tutor/`). UI ως `rag/ui/gradio_app.py` (όχι standalone `gradio_app.py`).
+- **2026-05-22** Corpus: μόνο solved_exercises προς το παρόν (28 αρχεία .md). Expansion σε επόμενη φάση.
+-
+- **2026-05-26** `openai_api_key` μπαίνει στο `Config` dataclass (με `repr=False`) για Fail-Fast validation και Single Source of Truth. Δεν διαβάζεται διασκοπρισμένα σε άλλα αρχεία.
+- **2026-05-26** `load_dotenv()` καλείται σε module level στο `config.py` — τρέχει μία φορά κατά το import, πριν οριστεί το `Config`.
+- **2026-05-26** Paths ορίζονται με `pathlib.Path` relative to `RAG_ROOT = Path(__file__).parent`.
 
 ---
+
+### Επόμενα βήματα
+
+1. `rag/ingestion/loader.py` — φόρτωση `.md` αρχείων με YAML frontmatter parsing
+2. `rag/ingestion/chunker.py` — chunking strategy για μαθηματικά κείμενα
+3. `rag/retrieval/vector_store.py` — ChromaDB persistent setup
 
 ## ⚙️ Configuration Settings
 
