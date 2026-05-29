@@ -5,18 +5,19 @@
 ### Τρέχουσα κατάσταση
 
 - **Φάση:** 1
-- **Τρέχον βήμα:** Βήμα 2 — Basic Indexing (σε εξέλιξη)
-- **Status:** `config.py` ολοκληρώθηκε → Επόμενο: `loader.py`
+- **Τρέχον βήμα:** Βήμα 2 — Basic Indexing (σε εξέλιξη: loader ✓, chunker επόμενο)-
+- **Status:** Σε εξέλιξη
 
 ---
 
 ### Νέα ολοκληρωμένα βήματα
 
-| #   | Βήμα                           | Notebook ref                     | Ημερομηνία | Σχόλια                                                                       |
-| --- | ------------------------------ | -------------------------------- | ---------- | ---------------------------------------------------------------------------- |
-| 0   | Project Scaffolding            | —                                | 2026-05-22 | Δομή φακέλων, **init**.py, empty modules                                     |
-| 1   | Corpus Preparation             | —                                | 2026-05-22 | 28 λυμένες ασκήσεις, chapter_01_functions, vocabulary.md                     |
-| 2a  | `config.py` — Singleton Config | `01_indexing_fundamentals.ipynb` | 2026-05-26 | `@lru_cache`, `@dataclass`, `__post_init__` validation, `repr=False` για key |
+| #   | Βήμα                                                                                           | Notebook ref                              | Ημερομηνία | Σχόλια                                                                                                                                                                                                   |
+| --- | ---------------------------------------------------------------------------------------------- | ----------------------------------------- | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 0   | Project Scaffolding                                                                            | —                                         | 2026-05-22 | Δομή φακέλων, **init**.py, empty modules                                                                                                                                                                 |
+| 1   | Corpus Preparation                                                                             | —                                         | 2026-05-22 | 28 λυμένες ασκήσεις, chapter_01_functions, vocabulary.md                                                                                                                                                 |
+| 2a  | `config.py` — Singleton Config                                                                 | `01_indexing_fundamentals.ipynb`          | 2026-05-26 | `@lru_cache`, `@dataclass`, `__post_init__` validation, `repr=False` για key                                                                                                                             |
+| 2b  | `rag/ingestion/loader.py` — `MarkdownExerciseLoader` + `ExerciseFrontmatter` (Pydantic schema) | Module 3 / 01_indexing_fundamentals.ipynb | 2026-05-29 | OOP class-based. python-frontmatter parsing + Pydantic validation. Επιστρέφει `tuple[List[Document], List[tuple[str, str]]]` — Επιλογή Β (collect-all-errors). Δοκιμάστηκε σε 28 αρχεία, 28/28 επιτυχία. |
 
 ---
 
@@ -27,6 +28,11 @@
 - **[2026-05-17]** Δομή corpus = ένα markdown αρχείο ανά υποερώτημα (όχι ανά άσκηση). Η κοινή εκφώνηση επαναλαμβάνεται σε κάθε υποερώτημα.
 - **[2026-05-17]** Closed vocabulary χωρίς τόνους, lowercase, για όλα τα controlled fields (`topic`, `concepts`, `core_techniques`). Λόγος: αποφυγή διπλών εγγραφών με/χωρίς τόνους.
 - **[2026-05-17]** Metadata schema v1
+
+- **[2026-05-29]** OOP class-based προσέγγιση για όλα τα modules του core. Συναρτήσεις μόνο για helpers.
+- **[2026-05-29]** Loader strategy: collect-all-errors. Δύο "καλάθια" (`successful`, `failed`) αντί για fail-fast. Λόγος: πιο βολικό για manual curation των 28 αρχείων.
+- **[2026-05-29]** Δύο ξεχωριστές κλάσεις στο `loader.py`: `ExerciseFrontmatter` (Pydantic schema) και `MarkdownExerciseLoader` (το "I/O") — αυστηρό Single Responsibility.
+- **[2026-05-29]** `concepts` και `core_techniques` αποθηκεύονται ως native `list[str]` στα metadata (Chroma >= 1.5.0 υποστηρίζει arrays με `$contains` / `$not_contains` operators). Καμία flattening μετατροπή.
 
 ```python
  #(επεκτάσιμη λίστα): definition, theorem_statement, proof, remark, solved_example, solved_exercise.
@@ -81,9 +87,9 @@ external_source_name: null
 
 ### Επόμενα βήματα
 
-1. `rag/ingestion/loader.py` — φόρτωση `.md` αρχείων με YAML frontmatter parsing
-2. `rag/ingestion/chunker.py` — chunking strategy για μαθηματικά κείμενα
-3. `rag/retrieval/vector_store.py` — ChromaDB persistent setup
+1. **Βήμα 2c** — `rag/ingestion/chunker.py`: στρατηγική splitting (πιθανά: `MarkdownHeaderTextSplitter` ή `RecursiveCharacterTextSplitter` με κατάλληλα separators για math content). Απόφαση αν χρειάζεται κόψιμο για το PoC ή αν 1 αρχείο = 1 chunk.
+2. **Βήμα 2d** — `rag/retrieval/vector_store.py`: ChromaDB wrapper, persistent storage στο `data/chroma_db/`.
+3. **Βήμα 3** — Vanilla RAG chain (notebook 3.2) → baseline measurement.
 
 ## ⚙️ Configuration Settings
 
@@ -118,6 +124,8 @@ external_source_name: null
 
 ## 🐛 Known Issues & Open Questions
 
+- **[2026-05-29]** Open question για Βήμα 9 (Routing): το LangChain `ChromaTranslator` του self-query retriever ίσως **δεν** υποστηρίζει `$contains` operator πάνω σε list metadata fields. Αν παίξει πρόβλημα τότε, ίσως χρειαστεί custom translator ή αλλαγή αναπαράστασης. Δεν επηρεάζει το τωρινό βήμα.
+
 ---
 
 ## 📁 Corpus Status
@@ -135,7 +143,7 @@ external_source_name: null
 
 ---
 
-## 📝 Decision Log (concise)
+## 📝 Decision Log
 
 ---
 
