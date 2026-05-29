@@ -1,7 +1,7 @@
 ---
 content_type: solved_exercise
 
-chapter: 1.2
+chapter: "1.2"
 topic: synartiseis
 
 source_type: sxoliko
