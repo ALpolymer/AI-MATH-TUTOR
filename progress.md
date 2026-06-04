@@ -5,10 +5,31 @@
 ### Τρέχουσα κατάσταση
 
 - **Φάση:** 1
-- **Τρέχον βήμα:** Βήμα 2 — Basic Indexing (σε εξέλιξη: loader ✓, chunker επόμενο)-
+- **Τρέχον βήμα:** Βήμα 2 — Basic Indexing (chunker ✓, vector_store επόμενο)
 - **Status:** Σε εξέλιξη
 
 ---
+
+### Deadline & πλάνο
+
+- **Deadline καθηγητή:** 20 Ιουνίου 2026 — ελάχιστο παραδοτέο.
+- **Διαθέσιμος χρόνος:** ~5-6 ώρες/μέρα.
+- **Πηγή απαιτήσεων:** AUEB Final Project spec (FastAPI backend + ουσιαστικό GenAI + λειτουργικό UI + GitHub/docs/README).
+
+### Scope ελάχιστου παραδοτέου (MVP για 20/6)
+
+1. `vector_store.py` — ChromaDB persistent (boilerplate, γρήγορα)
+2. Vanilla RAG chain — notebook 3.2 (Σωκρατικά, η ουσία)
+3. PCTF system prompt — notebook 2.4 (Σωκρατικά, ελαφρύ)
+4. Gradio UI — thin layer (γίνεται δεκτό από spec, όχι React)
+5. FastAPI backend — /chat endpoint + schemas + error handling + Swagger (boilerplate, γρήγορα)
+6. Documentation (PDF) + README.md + .gitignore + requirements.txt + παραδείγματα
+7. RAGAS: ΜΙΑ baseline μέτρηση για το documentation (όχι gate ανά βήμα)
+
+### Εκτός ελάχιστου scope (μελλοντικές επεκτάσεις στο documentation)
+
+- Βήματα 7-16: query transformations, routing, hybrid search, reranking, self-correcting RAG (LangGraph), GraphRAG, production basics.
+- **Stretch goal** (μόνο αν στέκει το ελάχιστο νωρίς): ένα από Multi-Query / self-query routing με τα metadata.
 
 ### Νέα ολοκληρωμένα βήματα
 
@@ -18,8 +39,7 @@
 | 1   | Corpus Preparation                                                                             | —                                         | 2026-05-22 | 28 λυμένες ασκήσεις, chapter_01_functions, vocabulary.md                                                                                                                                                 |
 | 2a  | `config.py` — Singleton Config                                                                 | `01_indexing_fundamentals.ipynb`          | 2026-05-26 | `@lru_cache`, `@dataclass`, `__post_init__` validation, `repr=False` για key                                                                                                                             |
 | 2b  | `rag/ingestion/loader.py` — `MarkdownExerciseLoader` + `ExerciseFrontmatter` (Pydantic schema) | Module 3 / 01_indexing_fundamentals.ipynb | 2026-05-29 | OOP class-based. python-frontmatter parsing + Pydantic validation. Επιστρέφει `tuple[List[Document], List[tuple[str, str]]]` — Επιλογή Β (collect-all-errors). Δοκιμάστηκε σε 28 αρχεία, 28/28 επιτυχία. |
-
----
+| 2c  | `rag/ingestion/chunker.py` — `Chunker.chunk()`                                                 | `01_indexing_fundamentals.ipynb`          | 2026-06-04 | 1 αρχείο = 1 chunk, no splitting. Προσθέτει `chunk_index=0` + `total_chunks=1` στα metadata. Έτοιμο για μελλοντικό splitting θεωρίας. Τεσταρίστηκε σε 28/28 με ξεχωριστό script.                         |
 
 ## 🏗️ Αρχιτεκτονικές Αποφάσεις
 
@@ -83,13 +103,18 @@ external_source_name: null
 - **2026-05-26** `load_dotenv()` καλείται σε module level στο `config.py` — τρέχει μία φορά κατά το import, πριν οριστεί το `Config`.
 - **2026-05-26** Paths ορίζονται με `pathlib.Path` relative to `RAG_ROOT = Path(__file__).parent`.
 
+- **2026-06-04** Δεν γίνεται splitting στη Φάση 1 — τα solved_exercise documents είναι ήδη αυτοτελή (1 υποερώτημα + εκφώνηση + λύση = 1 αρχείο). Το chunking έγινε de facto στο corpus design, όχι στον κώδικα.
+- **2026-06-04** `chunk_index` / `total_chunks` αντί για `is_chunked: bool`. Λόγος: ο ακέραιος δείκτης κρατά θέση μέσα σε ακολουθία (χρήσιμο όταν μπει θεωρία που σπάει σε N chunks)· το `is_chunked` προκύπτει παράγωγα (`total_chunks > 1`).
+- **2026-06-04** Ιδιοκτησία εννοιών: τα `chunk_index`/`total_chunks` τα βάζει ο **chunker**, όχι ο loader (Single Responsibility — η έννοια "chunk" γεννιέται στον chunker).
+- **2026-06-04** Ο `chunk()` τροποποιεί τα metadata **in-place** και επιστρέφει την ίδια λίστα (συνειδητή επιλογή για Φάση 1· τα Document objects είναι κοινά references με την έξοδο του loader).
+- **2026-06-04** RAGAS υποβαθμίστηκε από "gate ανά βήμα" σε "μία baseline + μία τελική μέτρηση για documentation". Λόγος: 28 docs + vanilla RAG δεν δίνουν αρκετό σήμα ανά μικρο-βήμα· πιο νοηματική αφήγηση για το docs.
+- **2026-06-04** UI = Gradio για το ελάχιστο (επιβεβαιωμένα δεκτό από spec). React μετατίθεται σε Φάση 2.
+
 ---
 
 ### Επόμενα βήματα
 
-1. **Βήμα 2c** — `rag/ingestion/chunker.py`: στρατηγική splitting (πιθανά: `MarkdownHeaderTextSplitter` ή `RecursiveCharacterTextSplitter` με κατάλληλα separators για math content). Απόφαση αν χρειάζεται κόψιμο για το PoC ή αν 1 αρχείο = 1 chunk.
-2. **Βήμα 2d** — `rag/retrieval/vector_store.py`: ChromaDB wrapper, persistent storage στο `data/chroma_db/`.
-3. **Βήμα 3** — Vanilla RAG chain (notebook 3.2) → baseline measurement.
+1. **Βήμα 2d** — `rag/retrieval/vector_store.py` (ChromaDB persistent, `data/chroma_db/`).
 
 ## ⚙️ Configuration Settings
 
@@ -138,19 +163,3 @@ external_source_name: null
 | Coverage chapters     | _1.2_ | _Κεφ. "Όρια & Συνέχεια Συναρτήσεων"_ |
 
 ---
-
-## 🎯 Επόμενα Βήματα (next 2-3 actions)
-
----
-
-## 📝 Decision Log
-
----
-
-## 🚧 Φάση 2 — Backlog
-
-- [ ] SymPy integration για math verification
-- [ ] Vision input (φωτογράφιση ασκήσεων)
-- [ ] Migration σε Qdrant ή pgvector
-- [ ] React/TypeScript frontend
-- [ ] Καθηγητικό mode (παραλλαγές ασκήσεων)
