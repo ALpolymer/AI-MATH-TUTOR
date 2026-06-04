@@ -16,4 +16,4 @@ if successful:
     first = successful[0]
     print("\n--- Δείγμα πρώτου Document ---")
     print(f"Metadata: {first.metadata}")
-    print(f"Content (πρώτοι 200 χαρακτήρες): {first.page_content[:200]}")
+    print(f" \n Content (πρώτοι 200 χαρακτήρες): \n {first.page_content[:200]}")
