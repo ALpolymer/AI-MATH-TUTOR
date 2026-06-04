@@ -11,6 +11,8 @@ load_dotenv()
 CONFIG_FILE_PATH = Path(__file__).resolve()
 
 RAG_ROOT = CONFIG_FILE_PATH.parent
+PROJECT_ROOT = RAG_ROOT.parent
+
 
 @dataclass
 class Config:
@@ -18,7 +20,7 @@ class Config:
     
     # Paths
     base_path: Path = Path(__file__).parent
-    chroma_db_path: Path = RAG_ROOT / "chroma_db"
+    chroma_db_path: Path = PROJECT_ROOT / "data" / "chroma_db"
     corpus_path: Path = RAG_ROOT / "corpus" / "chapter_01_functions"
 
     # Chunking
