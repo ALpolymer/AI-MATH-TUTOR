@@ -19,7 +19,9 @@ class VectorStore:
         
 
     def add_documents(self, docs: list[Document]) -> None:
-        self.store.add_documents(documents = docs)
+        ids = [item.metadata['source'] for item in docs ]
+        self.store.add_documents(documents = docs, ids = ids)
+
     def similarity_search(self, query: str, k : int | None = None) -> list[Document]:
         k_used = k if k is not None else self.default_k
         return self.store.similarity_search(query = query, k= k_used)
