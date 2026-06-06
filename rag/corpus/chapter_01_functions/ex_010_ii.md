@@ -10,7 +10,7 @@ difficulty: medium
 source_type: textbook
 book_page: 30
 book_exercise_number: "6"
-sub_question: ii
+subquestion: ii
 exam_year: null
 exam_theme: null
 external_source_name: null

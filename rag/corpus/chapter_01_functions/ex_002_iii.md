@@ -10,7 +10,7 @@ difficulty: easy
 source_type: textbook
 book_page: 27
 book_exercise_number: "2"
-sub_question: iii
+subquestion: iii
 exam_year: null
 exam_theme: null
 external_source_name: null

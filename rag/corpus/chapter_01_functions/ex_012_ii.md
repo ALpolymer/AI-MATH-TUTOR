@@ -14,7 +14,7 @@ difficulty: hard
 source_type: textbook
 book_page: 30
 book_exercise_number: "8"
-sub_question: beta
+subquestion: beta
 exam_year: null
 exam_theme: null
 external_source_name: null

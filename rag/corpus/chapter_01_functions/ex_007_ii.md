@@ -15,7 +15,7 @@ difficulty: medium
 source_type: textbook
 book_page: 28
 book_exercise_number: "10"
-sub_question: ii
+subquestion: ii
 exam_year: null
 exam_theme: null
 external_source_name: null
