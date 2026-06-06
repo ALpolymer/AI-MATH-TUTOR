@@ -19,7 +19,7 @@ exam_theme: null
 external_source_name: null
 ---
 
-## Εκφώνηση
+# ΕΚΦΩΝΗΣΗ
 
 Να προσδιορίσετε τη συνάρτηση $g \circ f$, αν
 

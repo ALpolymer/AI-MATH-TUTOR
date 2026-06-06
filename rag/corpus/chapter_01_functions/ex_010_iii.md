@@ -18,7 +18,7 @@ exam_theme: null
 external_source_name: null
 ---
 
-## Εκφώνηση
+# ΕΚΦΩΝΗΣΗ
 
 Να βρείτε συνάρτηση $f$ τέτοια, ώστε να ισχύει:
 

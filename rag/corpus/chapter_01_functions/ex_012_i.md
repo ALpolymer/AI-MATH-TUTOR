@@ -20,7 +20,7 @@ exam_theme: null
 external_source_name: null
 ---
 
-## Εκφώνηση
+# ΕΚΦΩΝΗΣΗ
 
 Δίνονται οι συναρτήσεις:
 $$f(x) = \dfrac{\alpha x + \beta}{x - \alpha}, \text{ με } \beta \neq -\alpha^2 \quad \text{και} \quad g(x) = x - 2\sqrt{x} + 1.$$
