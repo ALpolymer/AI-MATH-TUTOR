@@ -40,7 +40,7 @@ $$g(f(x)) = |\cos x|$$
 
 άρα
 
-$$ \sqrt{1-f^2(x)} = |\cos x| \Leftrightarrow 1-f^2(x) = \cos^2 x$$$
+$$ \sqrt{1-f^2(x)} = |\cos x| \Leftrightarrow 1-f^2(x) = \cos^2 x$$
 
 $$\Leftrightarrow f^2(x) = 1-\cos^2 x \Leftrightarrow f^2(x) = \sin^2 x $$
 

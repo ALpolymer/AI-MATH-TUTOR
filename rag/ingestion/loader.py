@@ -37,7 +37,7 @@ class MarkdownExerciseLoader:
                 final_metadata["source"] = file_path.name
 
                 doc = Document(
-                    page_content=parsed_file.content.strip(),
+                    page_content = parsed_file.content.strip(),
                     metadata=final_metadata
                 )
 
