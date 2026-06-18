@@ -35,3 +35,13 @@ Thumbs.db
 # IDEs (VS Code, PyCharm κλπ)
 # =========================
 .vscode/
+
+
+scratch_script.py
+test_chain_builder.py
+test_golden_dataset.py
+test_chunker.py
+test_loader.py
+test_vector_store.py
+test.py
+test_golden_dataset.py
